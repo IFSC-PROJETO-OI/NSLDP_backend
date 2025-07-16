@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-    origin: '*', // Permite todas as origens (APENAS PARA TESTE/DESENVOLVIMENTO)
+    origin: 'https://ifsc-projeto-oi.github.io/NSLDP/', // <-- COLOQUE A URL REAL AQUI!
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
