@@ -10,7 +10,7 @@ const cors = require('cors'); // Importa o pacote CORS
 const { GoogleGenerativeAI } = require('@google/generative-ai'); // Importa a biblioteca oficial do Gemini
 
 const app = express();
-const PORT = process.env.PORT || 3000; // Define a porta, usando a do ambiente ou 3000 por padrão
+const PORT = process.env.PORT || 10000; // Define a porta, usando a do ambiente ou 3000 por padrão
 
 // 2. Configuração do CORS (Cross-Origin Resource Sharing)
 // Isso permite que seu frontend (hospedado no GitHub Pages) faça requisições para este backend.
@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 3000; // Define a porta, usando a do ambiente o
 // Por exemplo, se a URL do seu GitHub Pages é 'https://ifsc-projeto-oi.github.io/NSLDP/',
 // então você deve usar exatamente essa string. Verifique se há uma barra '/' final na URL publicada.
 app.use(cors({
-    origin: 'https://ifsc-projeto-oi.github.io/NSLDP', // <--- VERIFIQUE AQUI COM EXTREMA ATENÇÃO!
+    origin: 'https://ifsc-projeto-oi.github.io/NSLDP', // <--- MANTEMOS SEM A BARRA FINAL PARA TESTE!
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
     allowedHeaders: ['Content-Type', 'Authorization'] // Cabeçalhos permitidos
 }));
@@ -41,8 +41,9 @@ if (!geminiApiKey) {
 const genAI = new GoogleGenerativeAI(geminiApiKey);
 
 // 6. Rota para o chat da API
-// Este é o endpoint que seu frontend irá chamar (https://nsldp-backend.onrender.com/api/chat)
-app.post('https://nsldp-backend.onrender.com', async (req, res) => {
+// ESTE É O PONTO CORRIGIDO: Use '/api/chat' como o caminho da rota.
+// O Render irá disponibilizá-lo em https://nsldp-backend.onrender.com/api/chat
+app.post('/api/chat', async (req, res) => { // <--- CORRIGIDO AQUI!
     const userMessage = req.body.message; // Pega a mensagem do usuário do corpo da requisição
 
     // Validação básica da mensagem do usuário
@@ -53,7 +54,8 @@ app.post('https://nsldp-backend.onrender.com', async (req, res) => {
 
     try {
         // Usa o modelo "gemini-1.5-flash" (modelo otimizado para velocidade)
-        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+        // Mantenho o 1.5-flash por ser o que vinha usando, mas 2.5-flash também é válido.
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" }); 
 
         // Inicia uma nova conversa com o modelo
         const chat = model.startChat({
