@@ -18,9 +18,9 @@ const PORT = process.env.PORT || 10000; // Define a porta, usando a do ambiente 
 // Por exemplo, se a URL do seu GitHub Pages é 'https://ifsc-projeto-oi.github.io/NSLDP/',
 // então você deve usar exatamente essa string. Verifique se há uma barra '/' final na URL publicada.
 app.use(cors({
-    origin: 'https://ifsc-projeto-oi.github.io/NSLDP', // <--- MANTEMOS SEM A BARRA FINAL PARA TESTE!
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
-    allowedHeaders: ['Content-Type', 'Authorization'] // Cabeçalhos permitidos
+    origin: 'https://ifsc-projeto-oi.github.io', // <--- ESTA É A MUDANÇA CRÍTICA!
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // 3. Middleware para parsear o corpo das requisições como JSON
