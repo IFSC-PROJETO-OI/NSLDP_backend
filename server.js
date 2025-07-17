@@ -55,7 +55,7 @@ app.post('/api/chat', async (req, res) => { // <--- CORRIGIDO AQUI!
     try {
         // Usa o modelo "gemini-1.5-flash" (modelo otimizado para velocidade)
         // Mantenho o 1.5-flash por ser o que vinha usando, mas 2.5-flash também é válido.
-        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" }); 
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" }); 
 
         // Inicia uma nova conversa com o modelo
         const chat = model.startChat({
