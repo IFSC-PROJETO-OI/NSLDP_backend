@@ -42,7 +42,7 @@ const genAI = new GoogleGenerativeAI(geminiApiKey);
 
 // 6. Rota para o chat da API
 // Este é o endpoint que seu frontend irá chamar (https://nsldp-backend.onrender.com/api/chat)
-app.post('https://nsldp-backend.onrender.com/api/chat', async (req, res) => {
+app.post('https://nsldp-backend.onrender.com', async (req, res) => {
     const userMessage = req.body.message; // Pega a mensagem do usuário do corpo da requisição
 
     // Validação básica da mensagem do usuário
@@ -53,7 +53,7 @@ app.post('https://nsldp-backend.onrender.com/api/chat', async (req, res) => {
 
     try {
         // Usa o modelo "gemini-1.5-flash" (modelo otimizado para velocidade)
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
         // Inicia uma nova conversa com o modelo
         const chat = model.startChat({
