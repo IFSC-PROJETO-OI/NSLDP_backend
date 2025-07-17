@@ -42,7 +42,7 @@ const genAI = new GoogleGenerativeAI(geminiApiKey);
 
 // 6. Rota para o chat da API
 // Este é o endpoint que seu frontend irá chamar (https://nsldp-backend.onrender.com/api/chat)
-app.post('/api/chat', async (req, res) => {
+app.post('https://nsldp-backend.onrender.com/api/chat', async (req, res) => {
     const userMessage = req.body.message; // Pega a mensagem do usuário do corpo da requisição
 
     // Validação básica da mensagem do usuário
